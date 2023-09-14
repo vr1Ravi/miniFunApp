@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FUNTOOS</title>
+    <link rel="stylesheet" href="static/index.css" />
+    <style>
+      h1 {
+        text-align: center;
+        font-size: 50px;
+        color: green;
+        font-weight: bolder;
+        font-family: cursive;
+        > span {
+          color: rgb(7, 7, 7);
+          margin-right: 10px;
+        }
+      }
+      .funDatas {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        width: 40%;
+        height: 60vh;
+        overflow-y: auto;
+        background-color: rgba(131, 230, 112, 0.5);
+        border-radius: 10px;
+        box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+        color: green;
+
+        > div {
+          display: flex;
+          width: 100%;
+          align-items: center;
+          > h5 {
+            margin: 0 10px;
+          }
+        }
+      }
+      .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        height: 100%;
+      }
+      .sigin {
+        position: absolute;
+        right: 1rem;
+        top: 8rem;
+        text-align: center;
+        font-size: 10px;
+        color: green;
+        font-weight: bolder;
+        font-family: cursive;
+        width: 40%;
+        height: 50vh;
+        background-color: rgba(131, 230, 112, 0.5);
+        border-radius: 10px;
+      }
+      input,
+      textarea {
+        padding: 0.5rem;
+        width: 50%;
+        outline: none;
+        background: transparent;
+        border: none;
+        border-radius: 10px;
+        border: 1px solid green;
+        margin: 1rem 0;
+      }
+      button {
+        padding: 0.5rem;
+        width: 50%;
+        outline: none;
+        background: transparent;
+        border: none;
+        border-radius: 10px;
+        border: 1px solid green;
+        cursor: pointer;
+        transition: all 0.5s ease-in-out;
+      }
+      button:hover {
+        background-color: green;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1><span>FUN</span>😝 FACT</h1>
+    <div class="sigin">
+      <form method="post" class="form">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="name"
+          placeholder="Enter your FirstName"
+          required
+        />
+        <textarea
+          name="funData"
+          cols="30"
+          rows="5"
+          placeholder="Enter your FunFact"
+          required
+        ></textarea>
+        <button type="submit">Share</button>
+      </form>
+    </div>
+    <div class="funDatas" id="funDatas">
+      {% for fun in servicesData %}
+      <div>
+        <h5>{{fun.name}} ➡</h5>
+
+        <p>{{fun.funData}}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </body>
+</html>
